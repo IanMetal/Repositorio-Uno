@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Web con Navbar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f3f3f3;
+        }
+
+        /* Barra de navegación */
+        nav {
+            background-color: #0078D7;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 16px;
+        }
+
+        nav a:hover {
+            background-color: #005fa3;
+            border-radius: 8px;
+        }
+
+        /* Contenido */
+        .contenido {
+            margin: 40px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #0078D7;
+            text-align: center;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        button {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav>
+        <a href="#" onclick="mostrarCuadrado()">Cuadrado</a>
+        <a href="#" onclick="mostrarCalculadora()">Calculadora</a>
+        <a href="#" onclick="cerrarSesion()">Cerrar Sesión</a>
+    </nav>
+
+    <!-- Contenedor dinámico -->
+    <div class="contenido" id="contenido">
+        <h2>Bienvenido</h2>
+        <p>Selecciona una opción del menú para comenzar.</p>
+    </div>
+
+    <script>
+        function mostrarCuadrado() {
+            document.getElementById("contenido").innerHTML = `
+                <h2>Calcular área de un cuadrado</h2>
+                <p>Introduce la longitud de un lado:</p>
+                <input type="number" id="lado" placeholder="Ejemplo: 5">
+                <button onclick="calcularArea()">Calcular</button>
+                <p id="resultado"></p>
+            `;
+        }
+
+        function calcularArea() {
+            const lado = document.getElementById("lado").value;
+            const area = lado * lado;
+            document.getElementById("resultado").innerText = "El área del cuadrado es: " + area + " unidades²";
+        }
+
+        function mostrarCalculadora() {
+            document.getElementById("contenido").innerHTML = `
+                <h2>Calculadora Básica</h2>
+                <input type="number" id="num1" placeholder="Número 1">
+                <input type="number" id="num2" placeholder="Número 2">
+                <br><br>
+                <button onclick="operar('+')">+</button>
+                <button onclick="operar('-')">-</button>
+                <button onclick="operar('*')">*</button>
+                <button onclick="operar('/')">/</button>
+                <p id="resultado"></p>
+            `;
+        }
+
+        function operar(op) {
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            let res = 0;
+
+            switch (op) {
+                case '+': res = n1 + n2; break;
+                case '-': res = n1 - n2; break;
+                case '*': res = n1 * n2; break;
+                case '/': res = n2 !== 0 ? n1 / n2 : "Error (división entre 0)"; break;
+            }
+            document.getElementById("resultado").innerText = "Resultado: " + res;
+        }
+
+        function cerrarSesion() {
+            document.getElementById("contenido").innerHTML = `
+                <h2>Sesión cerrada</h2>
+                <p>Gracias por usar la aplicación.</p>
+            `;
+            alert("Has cerrado sesión correctamente.");
+        }
+    </script>
+</body>
+</html>
