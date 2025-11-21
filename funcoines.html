@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Interacciones con JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .caja {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            border: 2px solid #000;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interacciones con Selectores, Funciones y Eventos</h1>
+
+    <!-- Selector por ID -->
+    <button onclick="cambiarColor()">Cambiar Color</button>
+
+    <!-- Selector por clase -->
+    <button onclick="agrandarCaja()">Agrandar Caja</button>
+
+    <!-- Selector por etiqueta -->
+    <button onclick="cambiarTexto()">Cambiar Texto</button>
+
+    <h2 id="titulo">Texto original</h2>
+
+    <div class="caja"></div>
+
+    <p>Este es un párrafo de ejemplo... IAN GAEL.</p>
+
+    <script>
+        // FUNCIÓN para cambiar color usando selector ID
+        function cambiarColor() {
+            const caja = document.querySelector(".caja"); // selector por clase
+            caja.style.backgroundColor = caja.style.backgroundColor === "lightblue" ? "lightcoral" : "lightblue";
+        }
+
+        // FUNCIÓN para agrandar caja usando clase
+        function agrandarCaja() {
+            const caja = document.querySelector(".caja");
+            caja.style.transform = "scale(1.2)";
+            setTimeout(() => caja.style.transform = "scale(1)", 500);
+        }
+
+        // FUNCIÓN para cambiar texto usando selector por etiqueta
+        function cambiarTexto() {
+            const titulo = document.getElementById("titulo");
+            titulo.textContent = titulo.textContent === "Texto original" ? "Texto cambiado con JavaScript y usando el boton" : "Texto original";
+        }
+    </script>
